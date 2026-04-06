@@ -1,9 +1,13 @@
 // ===============================
 // ONBOARDA PORTAL JS
 // Full version aligned to portal.html
+// Connected to client-portal.html
 // ===============================
 
 const STORAGE_KEY = "onboarda_entities";
+const CLIENT_SUBMISSION_KEY = "onboarda_client_submission";
+const IMPORTED_SUBMISSIONS_KEY = "onboarda_imported_submissions";
+
 const state = {
   entities: [],
   filters: {
@@ -64,10 +68,10 @@ function escapeHtml(str) {
 }
 
 function randomScoreFromRisk(risk) {
-  if (risk === "Low") return Math.floor(Math.random() * 18) + 15; // 15-32
-  if (risk === "Medium") return Math.floor(Math.random() * 20) + 33; // 33-52
-  if (risk === "High") return Math.floor(Math.random() * 18) + 53; // 53-70
-  return Math.floor(Math.random() * 20) + 71; // Very High 71-90
+  if (risk === "Low") return Math.floor(Math.random() * 18) + 15;
+  if (risk === "Medium") return Math.floor(Math.random() * 20) + 33;
+  if (risk === "High") return Math.floor(Math.random() * 18) + 53;
+  return Math.floor(Math.random() * 20) + 71;
 }
 
 function getRiskClass(risk) {
@@ -105,6 +109,19 @@ function getStatusClass(status) {
 function buildReference() {
   const stamp = Date.now().toString().slice(-6);
   return `ARF-2026-${stamp}`;
+}
+
+function getImportedSubmissionRefs() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(IMPORTED_SUBMISSIONS_KEY) || "[]");
+    return Array.isArray(saved) ? saved : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveImportedSubmissionRefs(refs) {
+  localStorage.setItem(IMPORTED_SUBMISSIONS_KEY, JSON.stringify(refs));
 }
 
 // ===============================
@@ -254,6 +271,79 @@ function handleCreateEntity(event) {
   if (riskField) riskField.value = "Medium";
 
   closeModal();
+}
+
+// ===============================
+// CLIENT PORTAL IMPORT
+// ===============================
+function inferRiskFromSubmission(submission) {
+  const fileCount = Array.isArray(submission.files) ? submission.files.length : 0;
+  const jurisdiction = String(submission.jurisdiction || "").toLowerCase();
+  const entityType = String(submission.entityType || "").toLowerCase();
+
+  if (fileCount < 2) return "High";
+  if (entityType === "trust" || entityType === "foundation") return "High";
+  if (jurisdiction && !["mauritius", "singapore", "uae", "bvi"].includes(jurisdiction)) return "Medium";
+
+  return "Medium";
+}
+
+function importClientSubmissionIfPresent() {
+  let submission = null;
+
+  try {
+    submission = JSON.parse(localStorage.getItem(CLIENT_SUBMISSION_KEY) || "null");
+  } catch (error) {
+    console.error("Failed to parse client submission:", error);
+    return;
+  }
+
+  if (!submission || submission.status !== "submitted") return;
+
+  const importedRefs = getImportedSubmissionRefs();
+  const submissionRef = submission.reference || `${submission.entityName}-${submission.savedAt}`;
+
+  if (importedRefs.includes(submissionRef)) return;
+
+  const existingEntity = state.entities.find((entity) => {
+    return (
+      entity.name === submission.entityName &&
+      entity.jurisdiction === submission.jurisdiction &&
+      entity.createdAt === submission.savedAt
+    );
+  });
+
+  if (existingEntity) {
+    importedRefs.push(submissionRef);
+    saveImportedSubmissionRefs(importedRefs);
+    return;
+  }
+
+  const risk = inferRiskFromSubmission(submission);
+
+  const importedEntity = {
+    id: "ENT-" + Date.now(),
+    reference: buildReference(),
+    name: submission.entityName || "New Client Submission",
+    type: submission.entityType || "Company",
+    jurisdiction: submission.jurisdiction || "—",
+    regNumber: submission.regNumber || "-",
+    owner: "Client Portal",
+    status: "Pending Documents",
+    risk,
+    score: randomScoreFromRisk(risk),
+    documents: Array.isArray(submission.files) ? submission.files.length : 0,
+    notes:
+      submission.notes ||
+      `Imported from client portal. Contact: ${submission.contactName || "—"} (${submission.contactEmail || "—"}).`,
+    createdAt: submission.savedAt || new Date().toISOString()
+  };
+
+  state.entities.unshift(importedEntity);
+  saveState();
+
+  importedRefs.push(submissionRef);
+  saveImportedSubmissionRefs(importedRefs);
 }
 
 // ===============================
@@ -428,7 +518,6 @@ function openEntity(id) {
 
   localStorage.setItem("current_entity", JSON.stringify(entity));
 
-  // Keeps demo flow moving even before entity.html is built
   if (window.location.pathname.endsWith("entity.html")) return;
   window.location.href = "entity.html";
 }
@@ -515,6 +604,7 @@ function bindEvents() {
 // ===============================
 document.addEventListener("DOMContentLoaded", () => {
   loadState();
+  importClientSubmissionIfPresent();
   bindEvents();
   renderAll();
 });
