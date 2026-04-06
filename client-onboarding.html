@@ -18,7 +18,7 @@
 
     <div class="header-actions">
       <a href="index.html" class="ghost-btn">Back to Dashboard</a>
-      <button class="primary-btn" id="submitOnboardingBtn">Submit Review</button>
+      <button class="primary-btn" id="submitOnboardingBtn" type="button">Submit Review</button>
     </div>
   </header>
 
@@ -28,24 +28,24 @@
         <span class="hero-badge">AI Validation · Screening · Risk Pricing</span>
         <h2>Secure onboarding for regulated client intake</h2>
         <p>
-          Upload corporate and identity documents, run AI-assisted validation,
-          assess client risk, and generate a pricing outcome based on risk level
-          and onboarding complexity.
+          Upload documents, complete a structured client risk profile,
+          run AI-assisted validation, assess regulatory risk, and generate
+          a pricing outcome based on risk level and onboarding complexity.
         </p>
       </div>
 
       <div class="hero-stats">
         <div class="hero-stat-card">
           <span>Validation Readiness</span>
-          <strong id="readinessScore">84%</strong>
+          <strong id="readinessScore">22%</strong>
         </div>
         <div class="hero-stat-card">
           <span>Current Risk Level</span>
-          <strong id="heroRiskLevel">Medium</strong>
+          <strong id="heroRiskLevel">Pending</strong>
         </div>
         <div class="hero-stat-card">
           <span>Indicative Fee</span>
-          <strong id="heroPrice">$650</strong>
+          <strong id="heroPrice">$0</strong>
         </div>
       </div>
     </section>
@@ -64,7 +64,7 @@
           <div class="form-grid">
             <div class="field-group">
               <label for="entityName">Legal Entity Name</label>
-              <input type="text" id="entityName" placeholder="Enter company name" />
+              <input type="text" id="entityName" placeholder="Enter company or client name" />
             </div>
 
             <div class="field-group">
@@ -73,45 +73,250 @@
             </div>
 
             <div class="field-group">
-              <label for="jurisdiction">Jurisdiction</label>
-              <select id="jurisdiction">
-                <option value="">Select jurisdiction</option>
-                <option value="mauritius">Mauritius</option>
-                <option value="uae">UAE</option>
-                <option value="uk">United Kingdom</option>
-                <option value="singapore">Singapore</option>
-                <option value="seychelles">Seychelles</option>
-                <option value="south-africa">South Africa</option>
-              </select>
-            </div>
-
-            <div class="field-group">
-              <label for="industry">Industry</label>
-              <select id="industry">
-                <option value="">Select industry</option>
-                <option value="financial-services">Financial Services</option>
-                <option value="investment-holding">Investment Holding</option>
-                <option value="crypto">Digital Assets / Crypto</option>
-                <option value="real-estate">Real Estate</option>
-                <option value="consulting">Consulting</option>
-                <option value="trading">Trading</option>
-              </select>
-            </div>
-
-            <div class="field-group">
               <label for="clientType">Client Type</label>
               <select id="clientType">
                 <option value="">Select type</option>
-                <option value="individual">Individual</option>
-                <option value="corporate">Corporate</option>
+                <option value="listed-company">Listed Company</option>
+                <option value="regulated-financial-institution">Regulated Financial Institution</option>
+                <option value="government">Government / Public Sector Entity</option>
+                <option value="large-private-company">Large Private Company</option>
+                <option value="sme-private-company">SME / Private Company</option>
+                <option value="newly-incorporated-company">Newly Incorporated Company</option>
                 <option value="trust">Trust</option>
-                <option value="fund">Fund</option>
+                <option value="foundation">Foundation</option>
+                <option value="regulated-fund">Regulated Fund</option>
+                <option value="unregulated-fund-spv">Unregulated Fund / SPV</option>
+                <option value="ngo">Non-Profit / NGO</option>
+                <option value="shell-company">Shell Company / SPV</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label for="ownershipStructure">Ownership Structure</label>
+              <select id="ownershipStructure">
+                <option value="">Select structure</option>
+                <option value="simple">Simple — direct identifiable UBOs</option>
+                <option value="layers-1-2">1–2 ownership layers</option>
+                <option value="layers-3-plus">3+ ownership layers / nominee shareholders</option>
+                <option value="opaque">Complex multi-jurisdiction / opaque structure</option>
               </select>
             </div>
 
             <div class="field-group">
               <label for="beneficialOwners">Beneficial Owners</label>
               <input type="number" id="beneficialOwners" placeholder="e.g. 2" min="0" />
+            </div>
+
+            <div class="field-group">
+              <label for="jurisdiction">Country of Incorporation</label>
+              <select id="jurisdiction">
+                <option value="">Select country</option>
+                <option value="mauritius">Mauritius</option>
+                <option value="uae">UAE</option>
+                <option value="uk">United Kingdom</option>
+                <option value="singapore">Singapore</option>
+                <option value="seychelles">Seychelles</option>
+                <option value="south-africa">South Africa</option>
+                <option value="india">India</option>
+                <option value="france">France</option>
+                <option value="canada">Canada</option>
+                <option value="nigeria">Nigeria</option>
+                <option value="iran">Iran</option>
+                <option value="russia">Russia</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label for="uboNationality">Highest-Risk UBO / Director Nationality</label>
+              <select id="uboNationality">
+                <option value="">Select nationality jurisdiction</option>
+                <option value="mauritius">Mauritius</option>
+                <option value="uae">UAE</option>
+                <option value="uk">United Kingdom</option>
+                <option value="singapore">Singapore</option>
+                <option value="seychelles">Seychelles</option>
+                <option value="south-africa">South Africa</option>
+                <option value="india">India</option>
+                <option value="france">France</option>
+                <option value="canada">Canada</option>
+                <option value="nigeria">Nigeria</option>
+                <option value="iran">Iran</option>
+                <option value="russia">Russia</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label for="intermediaryJurisdiction">Intermediary Shareholder Jurisdiction</label>
+              <select id="intermediaryJurisdiction">
+                <option value="">Select jurisdiction</option>
+                <option value="none">No intermediaries / low-risk only</option>
+                <option value="standard">Standard / emerging jurisdictions</option>
+                <option value="grey-opaque">Grey list / opaque jurisdictions</option>
+                <option value="sanctioned-secrecy">Sanctioned / secrecy jurisdictions</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label for="countriesOfOperation">Countries of Operation</label>
+              <select id="countriesOfOperation">
+                <option value="">Select exposure</option>
+                <option value="all-low">All low-risk jurisdictions</option>
+                <option value="mostly-low-some-medium">Mostly low-risk with some medium-risk</option>
+                <option value="includes-high-risk">Includes high-risk jurisdictions</option>
+                <option value="predominantly-high-risk">Predominantly high-risk / sanctioned</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label for="paymentCorridors">Target Markets / Payment Corridors</label>
+              <select id="paymentCorridors">
+                <option value="">Select corridor profile</option>
+                <option value="developed">Developed markets only</option>
+                <option value="mixed">Mix of developed and emerging markets</option>
+                <option value="frontier">Predominantly emerging / frontier markets</option>
+                <option value="sanctioned">Includes sanctioned / very high-risk markets</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label for="primaryService">Primary Service Required</label>
+              <select id="primaryService">
+                <option value="">Select service</option>
+                <option value="domestic-payments">Domestic payments only</option>
+                <option value="multi-currency">Multi-currency corporate accounts</option>
+                <option value="cross-border">Cross-border international transfers</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label for="transactionVolume">Expected Monthly Transaction Volume</label>
+              <select id="transactionVolume">
+                <option value="">Select volume</option>
+                <option value="under-50k">Under USD 50,000</option>
+                <option value="50k-500k">USD 50,000 to USD 500,000</option>
+                <option value="500k-5m">USD 500,000 to USD 5,000,000</option>
+                <option value="over-5m">Over USD 5,000,000</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label for="transactionComplexity">Transaction Complexity</label>
+              <select id="transactionComplexity">
+                <option value="">Select complexity</option>
+                <option value="simple">Simple — single currency, domestic</option>
+                <option value="standard">Standard — multi-currency, low-risk corridors</option>
+                <option value="complex">Complex — multiple international corridors</option>
+                <option value="very-complex">Very complex — includes high-risk corridors</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label for="industry">Business Sector / Industry</label>
+              <select id="industry">
+                <option value="">Select industry</option>
+                <option value="regulated-financial">Regulated Financial Institution / Bank</option>
+                <option value="government-sector">Government / Public Sector</option>
+                <option value="listed-company-main-board">Listed Company — Main Board</option>
+                <option value="healthcare">Healthcare / Pharmaceuticals</option>
+                <option value="technology">Technology / Software / SaaS</option>
+                <option value="manufacturing">Manufacturing / Industrial</option>
+                <option value="retail-ecommerce">Retail / E-commerce</option>
+                <option value="hospitality">Hospitality / Tourism / Travel</option>
+                <option value="logistics">Logistics / Supply Chain / Shipping</option>
+                <option value="education">Education / Training</option>
+                <option value="media">Media / Entertainment / Publishing</option>
+                <option value="import-export">Import / Export / International Trade</option>
+                <option value="real-estate">Real Estate / Property</option>
+                <option value="legal-advisory">Legal / Accounting / Advisory Services</option>
+                <option value="msb-remittance">Money Service Business / Remittance</option>
+                <option value="forex-broker">Forex / CFD / Derivatives Broker</option>
+                <option value="private-banking">Private Banking / Wealth Management</option>
+                <option value="precious-metals">Precious Metals / Stones / Jewellery</option>
+                <option value="ngo-charity">Non-Profit / NGO / Charity</option>
+                <option value="oil-gas">Oil & Gas / Mining / Extractives</option>
+                <option value="construction">Construction / Infrastructure</option>
+                <option value="management-consulting">Management Consulting</option>
+                <option value="financial-tax-advisory">Financial / Tax Advisory</option>
+                <option value="crypto">Cryptocurrency / Virtual Asset Services</option>
+                <option value="gambling">Gambling / Gaming / Betting</option>
+                <option value="arms-defence">Arms / Defence / Military Equipment</option>
+                <option value="adult-entertainment">Adult Entertainment</option>
+                <option value="nominee-services">Shell Company / Nominee Services</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label for="pepStatusInput">PEP Status</label>
+              <select id="pepStatusInput">
+                <option value="">Select PEP exposure</option>
+                <option value="none">No PEP connection</option>
+                <option value="close-associate">Close associate / family member of PEP</option>
+                <option value="domestic-pep">Domestic PEP</option>
+                <option value="foreign-pep">Foreign / International PEP</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label for="adverseMediaInput">Adverse Media / Negative News</label>
+              <select id="adverseMediaInput">
+                <option value="">Select media result</option>
+                <option value="none">No adverse media identified</option>
+                <option value="minor">Minor or unsubstantiated reports</option>
+                <option value="confirmed">Confirmed adverse media / regulatory action</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label for="sourceOfWealth">Source of Wealth</label>
+              <select id="sourceOfWealth">
+                <option value="">Select source of wealth</option>
+                <option value="business-revenue">Business revenue / trading profits</option>
+                <option value="investment-returns">Investment returns / dividends</option>
+                <option value="sale-assets">Sale of assets / property</option>
+                <option value="venture-capital">Venture capital / investor funding</option>
+                <option value="government-funding">Government funding / grants</option>
+                <option value="inheritance">Inheritance / family wealth</option>
+                <option value="loan-proceeds">Loan / credit facility proceeds</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label for="sourceOfFunds">Initial Source of Funds</label>
+              <select id="sourceOfFunds">
+                <option value="">Select source of funds</option>
+                <option value="company-bank">Transfer from company bank account</option>
+                <option value="parent-group">Parent company / group entity transfer</option>
+                <option value="client-payments">Client payments / receivables</option>
+                <option value="revenue-operations">Revenue from business operations</option>
+                <option value="capital-injection">Shareholder / director capital injection</option>
+                <option value="fundraise">Investment round / fundraise proceeds</option>
+                <option value="loan-drawdown">Loan / credit facility drawdown</option>
+                <option value="sale-assets">Sale of assets / property</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label for="referralMethod">Introduction / Referral Method</label>
+              <select id="referralMethod">
+                <option value="">Select referral method</option>
+                <option value="direct">Direct application — client initiated</option>
+                <option value="regulated-intermediary">Introduced by regulated intermediary / agent</option>
+                <option value="non-regulated-intermediary">Introduced by non-regulated intermediary</option>
+                <option value="unknown-referral">Unsolicited / unknown referral source</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label for="interactionType">Customer Interaction Type</label>
+              <select id="interactionType">
+                <option value="">Select interaction type</option>
+                <option value="face-to-face">In-person face-to-face meeting</option>
+                <option value="video-kyc">Video KYC / video call conducted</option>
+                <option value="remote-low-risk">Non-face-to-face — low-risk jurisdiction</option>
+                <option value="remote-high-risk">Non-face-to-face — high-risk jurisdiction</option>
+              </select>
             </div>
 
             <div class="field-group full-width">
@@ -127,7 +332,26 @@
               <p class="card-label">Step 2</p>
               <h3>Document Upload Center</h3>
             </div>
-            <span class="status-chip neutral">Awaiting Files</span>
+            <span class="status-chip neutral" id="uploadStatusChip">Awaiting Files</span>
+          </div>
+
+          <div class="required-docs-grid">
+            <div class="required-doc-card">
+              <h4>Identity</h4>
+              <p>Passport / National ID / Director ID</p>
+            </div>
+            <div class="required-doc-card">
+              <h4>Address</h4>
+              <p>Proof of Address / Utility Bill</p>
+            </div>
+            <div class="required-doc-card">
+              <h4>Corporate</h4>
+              <p>Certificate / Register / Corporate docs</p>
+            </div>
+            <div class="required-doc-card">
+              <h4>Funds</h4>
+              <p>Source of Funds / Bank Statement</p>
+            </div>
           </div>
 
           <div class="upload-zone" id="uploadZone">
@@ -137,18 +361,6 @@
               <h4>Drag and drop documents here</h4>
               <p>Upload multiple files for identity, corporate, and supporting verification.</p>
               <button type="button" class="primary-btn" id="browseFilesBtn">Browse Files</button>
-            </div>
-          </div>
-
-          <div class="required-docs">
-            <h4>Suggested Required Documents</h4>
-            <div class="doc-tags">
-              <span>Passport / National ID</span>
-              <span>Proof of Address</span>
-              <span>Certificate of Incorporation</span>
-              <span>Shareholder Register</span>
-              <span>Source of Funds</span>
-              <span>Bank Statement</span>
             </div>
           </div>
 
@@ -169,7 +381,7 @@
               <p class="card-label">Step 3</p>
               <h3>AI Validation Results</h3>
             </div>
-            <span class="status-chip success">AI Ready</span>
+            <span class="status-chip success">Assessment Engine Ready</span>
           </div>
 
           <div class="validation-grid">
@@ -210,16 +422,16 @@
               <p class="card-label">Screening</p>
               <h3>Risk Screening Overview</h3>
             </div>
-            <span class="status-chip warning">Review Enabled</span>
+            <span class="status-chip warning">Model Driven</span>
           </div>
 
           <div class="screening-list">
             <div class="screening-item">
               <div>
                 <h4>Sanctions Screening</h4>
-                <p>Match status across restricted party data sources</p>
+                <p>Jurisdiction and nationality override controls</p>
               </div>
-              <span class="screening-badge clear" id="sanctionsStatus">Clear</span>
+              <span class="screening-badge clear" id="sanctionsStatus">Pending</span>
             </div>
 
             <div class="screening-item">
@@ -227,7 +439,7 @@
                 <h4>PEP Screening</h4>
                 <p>Politically exposed person review</p>
               </div>
-              <span class="screening-badge watch" id="pepStatus">Watchlist</span>
+              <span class="screening-badge watch" id="pepStatus">Pending</span>
             </div>
 
             <div class="screening-item">
@@ -235,7 +447,7 @@
                 <h4>Adverse Media</h4>
                 <p>Negative news and reputational review</p>
               </div>
-              <span class="screening-badge clear" id="adverseMediaStatus">Clear</span>
+              <span class="screening-badge clear" id="adverseMediaStatus">Pending</span>
             </div>
 
             <div class="screening-item">
@@ -243,7 +455,7 @@
                 <h4>Jurisdiction Risk</h4>
                 <p>Geographic exposure assessment</p>
               </div>
-              <span class="screening-badge medium" id="jurisdictionStatus">Moderate</span>
+              <span class="screening-badge medium" id="jurisdictionStatus">Pending</span>
             </div>
           </div>
         </div>
@@ -254,47 +466,51 @@
               <p class="card-label">Scoring</p>
               <h3>Risk Rating</h3>
             </div>
-            <span class="status-chip danger" id="riskChip">Medium Risk</span>
+            <span class="status-chip neutral" id="riskChip">Pending</span>
           </div>
 
           <div class="risk-score-panel">
             <div class="risk-ring">
               <div class="risk-ring-inner">
-                <span id="riskScoreNumber">58</span>
+                <span id="riskScoreNumber">0</span>
                 <small>/100</small>
               </div>
             </div>
 
             <div class="risk-summary">
-              <h4 id="riskSummaryTitle">Enhanced Due Diligence Recommended</h4>
+              <h4 id="riskSummaryTitle">Awaiting assessment</h4>
               <p id="riskSummaryText">
-                Initial onboarding indicators suggest a moderate-risk profile
-                due to jurisdiction exposure, document complexity, and screening sensitivity.
+                Complete the client profile, upload documents, and run the AI assessment
+                to generate a formal onboarding risk recommendation.
               </p>
             </div>
           </div>
 
           <div class="risk-breakdown">
             <div class="breakdown-row">
-              <span>Jurisdiction Exposure</span>
-              <strong id="jurisdictionScore">18</strong>
+              <span>Customer / Entity Risk</span>
+              <strong id="dimension1Score">0</strong>
             </div>
             <div class="breakdown-row">
-              <span>Ownership Complexity</span>
-              <strong id="ownershipScore">12</strong>
+              <span>Geographic Risk</span>
+              <strong id="dimension2Score">0</strong>
             </div>
             <div class="breakdown-row">
-              <span>Screening Impact</span>
-              <strong id="screeningScore">16</strong>
+              <span>Product / Service Risk</span>
+              <strong id="dimension3Score">0</strong>
             </div>
             <div class="breakdown-row">
-              <span>Document Quality</span>
-              <strong id="documentScore">12</strong>
+              <span>Industry / Sector Risk</span>
+              <strong id="dimension4Score">0</strong>
+            </div>
+            <div class="breakdown-row">
+              <span>Delivery Channel Risk</span>
+              <strong id="dimension5Score">0</strong>
             </div>
           </div>
         </div>
 
-        <div class="portal-card side-card">
+                <div class="portal-card side-card">
           <div class="card-header">
             <div>
               <p class="card-label">Pricing</p>
@@ -304,8 +520,8 @@
           </div>
 
           <div class="price-panel">
-            <h2 id="priceOutput">$650</h2>
-            <p id="priceTier">Medium-risk onboarding package</p>
+            <h2 id="priceOutput">$0</h2>
+            <p id="priceTier">Awaiting risk calculation</p>
           </div>
 
           <div class="price-breakdown">
@@ -315,11 +531,11 @@
             </div>
             <div class="breakdown-row">
               <span>Complexity Adjustment</span>
-              <strong id="complexityFee">$150</strong>
+              <strong id="complexityFee">$0</strong>
             </div>
             <div class="breakdown-row">
               <span>Risk Adjustment</span>
-              <strong id="riskFee">$250</strong>
+              <strong id="riskFee">$0</strong>
             </div>
           </div>
         </div>
@@ -330,18 +546,17 @@
               <p class="card-label">Decision</p>
               <h3>Onboarding Outcome</h3>
             </div>
-            <span class="status-chip info" id="outcomeChip">Manual Review</span>
+            <span class="status-chip neutral" id="outcomeChip">Awaiting Review</span>
           </div>
 
           <div class="outcome-box">
-            <h4 id="outcomeTitle">Further Review Required</h4>
+            <h4 id="outcomeTitle">Assessment Not Yet Run</h4>
             <p id="outcomeText">
-              Additional verification is recommended before client acceptance.
-              AI checks identified items requiring compliance review.
+              Run the AI assessment to generate a risk-based onboarding recommendation.
             </p>
           </div>
 
-          <button class="secondary-btn full-btn" id="runAssessmentBtn">
+          <button class="secondary-btn full-btn" id="runAssessmentBtn" type="button">
             Run AI Assessment
           </button>
         </div>
@@ -362,15 +577,7 @@
           <span class="timeline-dot"></span>
           <div>
             <h4>Portal initialized</h4>
-            <p>Client onboarding workspace is ready for document submission and AI assessment.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <span class="timeline-dot"></span>
-          <div>
-            <h4>No documents uploaded yet</h4>
-            <p>Upload files to begin extraction, screening, and scoring.</p>
+            <p>Client onboarding workspace is ready for profile completion, document submission, and AI assessment.</p>
           </div>
         </div>
       </div>
@@ -380,3 +587,4 @@
   <script src="client-onboarding.js"></script>
 </body>
 </html>
+
