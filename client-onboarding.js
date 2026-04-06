@@ -303,3 +303,189 @@ formIds.forEach((id) => {
     updateReadiness();
   });
 });
+  state.averageConfidence = Math.round(totalConfidence / state.files.length);
+
+  classificationStatus.textContent = "Complete";
+  extractionStatus.textContent = "Complete";
+  crossValidationStatus.textContent =
+    state.averageConfidence >= 90 ? "Passed" : "Review";
+  confidenceScore.textContent = `${state.averageConfidence}%`;
+
+  assessScreeningResults();
+  updateRiskAndPricing();
+
+  state.alerts = generateValidationAlerts();
+  renderValidationAlerts();
+
+  state.assessmentRun = true;
+  updateOutcome(state.riskScore);
+  updateReadiness();
+
+  addTimelineItem(
+    "AI validation completed",
+    `Assessment finished with ${state.averageConfidence}% average confidence across ${state.files.length} file(s).`
+  );
+
+  if (
+    state.alerts.length &&
+    state.alerts[0] !== "No material validation issues detected."
+  ) {
+    addTimelineItem(
+      "Validation alerts generated",
+      `${state.alerts.length} onboarding alert(s) were raised for follow-up review.`
+    );
+  }
+}
+
+function updateOutcome(totalScore) {
+  const hasEscalationAlert = state.alerts.some((alert) =>
+    /sanctioned|very high|black list|floor rule|mandatory compliance approval/i.test(alert)
+  );
+
+  if (!state.assessmentRun) {
+    outcomeChip.textContent = "Awaiting Review";
+    outcomeChip.className = "status-chip neutral";
+    outcomeTitle.textContent = "Assessment Not Yet Run";
+    outcomeText.textContent =
+      "Run the AI assessment to generate a risk-based onboarding recommendation.";
+    return;
+  }
+
+  if (hasEscalationAlert || totalScore >= 85) {
+    outcomeChip.textContent = "Escalate";
+    outcomeChip.className = "status-chip danger";
+    outcomeTitle.textContent = "Compliance Approval Required";
+    outcomeText.textContent =
+      "This onboarding case meets escalation criteria and requires compliance approval before onboarding can proceed.";
+    return;
+  }
+
+  if (totalScore >= 70) {
+    outcomeChip.textContent = "EDD Required";
+    outcomeChip.className = "status-chip danger";
+    outcomeTitle.textContent = "Enhanced Due Diligence Required";
+    outcomeText.textContent =
+      "This onboarding case falls within the high-risk range and requires enhanced due diligence before acceptance.";
+    return;
+  }
+
+  if (totalScore >= 40) {
+    outcomeChip.textContent = "CDD Review";
+    outcomeChip.className = "status-chip warning";
+    outcomeTitle.textContent = "Customer Due Diligence Required";
+    outcomeText.textContent =
+      "This onboarding case is medium risk and should proceed through standard customer due diligence and compliance review.";
+    return;
+  }
+
+  outcomeChip.textContent = "Proceed";
+  outcomeChip.className = "status-chip success";
+  outcomeTitle.textContent = "Simplified Due Diligence Eligible";
+  outcomeText.textContent =
+    "This onboarding case currently falls within the low-risk range and appears eligible for simplified due diligence, subject to final checks.";
+}
+
+function submitOnboardingReview() {
+  const entityName = getInputValue("entityName").trim();
+  const registrationNumber = getInputValue("registrationNumber").trim();
+  const clientType = getInputValue("clientType");
+  const jurisdiction = getInputValue("jurisdiction");
+
+  if (!entityName || !clientType || !jurisdiction) {
+    alert("Complete the entity profile before submitting the onboarding review.");
+    addTimelineItem(
+      "Submission blocked",
+      "The onboarding file could not be submitted because required entity profile fields are incomplete."
+    );
+    return;
+  }
+
+  if (!state.files.length) {
+    alert("Upload the required documents before submitting the onboarding review.");
+    addTimelineItem(
+      "Submission blocked",
+      "The onboarding file could not be submitted because no supporting documents were uploaded."
+    );
+    return;
+  }
+
+  if (!state.assessmentRun) {
+    alert("Run the AI assessment before submitting the onboarding review.");
+    addTimelineItem(
+      "Submission blocked",
+      "The onboarding file could not be submitted because the AI assessment has not yet been run."
+    );
+    return;
+  }
+
+  const ref = registrationNumber || `OB-${Date.now().toString().slice(-6)}`;
+
+  addTimelineItem(
+    "Onboarding review submitted",
+    `${entityName} (${ref}) was submitted with a ${state.riskLevel.toUpperCase()} risk profile and indicative fee of ${formatCurrency(state.price)}.`
+  );
+
+  alert(
+    `Onboarding submitted successfully.\n\nEntity: ${entityName}\nRisk Rating: ${state.riskLevel}\nRisk Score: ${state.riskScore}/100\nIndicative Fee: ${formatCurrency(state.price)}`
+  );
+}
+
+runAssessmentBtn.addEventListener("click", runAiAssessment);
+submitOnboardingBtn.addEventListener("click", submitOnboardingReview);
+
+[
+  "entityName",
+  "registrationNumber",
+  "jurisdiction",
+  "industry",
+  "clientType",
+  "beneficialOwners",
+  "businessActivity",
+  "pepQuestion",
+  "adverseMediaQuestion",
+  "sourceOfWealth",
+  "sourceOfFunds",
+  "serviceRequired",
+  "monthlyVolume",
+  "corridorComplexity",
+  "introductionMethod",
+  "interactionType",
+  "uboNationalityRisk",
+  "intermediaryJurisdictionRisk",
+  "countriesOperationRisk",
+  "targetMarketsRisk"
+].forEach((id) => {
+  const field = document.getElementById(id);
+  if (!field) return;
+
+  field.addEventListener("input", () => {
+    if (state.assessmentRun) {
+      updateRiskAndPricing();
+      state.alerts = generateValidationAlerts();
+      renderValidationAlerts();
+      updateOutcome(state.riskScore);
+      updateReadiness();
+    } else {
+      updateRiskAndPricing();
+      updateReadiness();
+    }
+  });
+
+  field.addEventListener("change", () => {
+    if (state.assessmentRun) {
+      updateRiskAndPricing();
+      state.alerts = generateValidationAlerts();
+      renderValidationAlerts();
+      updateOutcome(state.riskScore);
+      updateReadiness();
+    } else {
+      updateRiskAndPricing();
+      updateReadiness();
+    }
+  });
+});
+
+renderFiles();
+updateRiskAndPricing();
+updateReadiness();
+renderValidationAlerts();
