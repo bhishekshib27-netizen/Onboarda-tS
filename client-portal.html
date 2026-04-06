@@ -380,11 +380,25 @@
     function bindClientEvents() {
       const fileInput = byId("client-file-input");
       if (fileInput) {
-        fileInput.addEventListener("change", (event) => {
-          clientState.files = Array.from(event.target.files || []);
-          renderFiles();
-        });
+  fileInput.addEventListener("change", (event) => {
+    const newFiles = Array.from(event.target.files || []);
+
+    const existingKeys = new Set(
+      clientState.files.map(file => `${file.name}-${file.size}-${file.type}`)
+    );
+
+    newFiles.forEach((file) => {
+      const key = `${file.name}-${file.size}-${file.type}`;
+      if (!existingKeys.has(key)) {
+        clientState.files.push(file);
+        existingKeys.add(key);
       }
+    });
+
+    event.target.value = "";
+    renderFiles();
+  });
+}
 
       [
         "client-entity-name",
