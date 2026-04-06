@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Client Onboarding | Onboarda</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="onboarding-body">
+  <header class="onboarding-header">
+    <div class="brand-wrap">
+      <div class="brand-mark">O</div>
+      <div>
+        <p class="brand-label">Onboarda</p>
+        <h1>Client Onboarding Intelligence Portal</h1>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <a href="index.html" class="ghost-btn">Back to Dashboard</a>
+      <button class="primary-btn" id="submitOnboardingBtn">Submit Review</button>
+    </div>
+  </header>
+
+  <main class="onboarding-shell">
+    <section class="hero-panel">
+      <div class="hero-copy">
+        <span class="hero-badge">AI Validation · Screening · Risk Pricing</span>
+        <h2>Secure onboarding for regulated client intake</h2>
+        <p>
+          Upload corporate and identity documents, run AI-assisted validation,
+          assess client risk, and generate a pricing outcome based on risk level
+          and onboarding complexity.
+        </p>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat-card">
+          <span>Validation Readiness</span>
+          <strong id="readinessScore">84%</strong>
+        </div>
+        <div class="hero-stat-card">
+          <span>Current Risk Level</span>
+          <strong id="heroRiskLevel">Medium</strong>
+        </div>
+        <div class="hero-stat-card">
+          <span>Indicative Fee</span>
+          <strong id="heroPrice">$650</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="onboarding-grid">
+      <div class="left-column">
+        <div class="portal-card">
+          <div class="card-header">
+            <div>
+              <p class="card-label">Step 1</p>
+              <h3>Entity Profile</h3>
+            </div>
+            <span class="status-chip info">In Progress</span>
+          </div>
+
+          <div class="form-grid">
+            <div class="field-group">
+              <label for="entityName">Legal Entity Name</label>
+              <input type="text" id="entityName" placeholder="Enter company name" />
+            </div>
+
+            <div class="field-group">
+              <label for="registrationNumber">Registration Number</label>
+              <input type="text" id="registrationNumber" placeholder="C123456" />
+            </div>
+
+            <div class="field-group">
+              <label for="jurisdiction">Jurisdiction</label>
+              <select id="jurisdiction">
+                <option value="">Select jurisdiction</option>
+                <option value="mauritius">Mauritius</option>
+                <option value="uae">UAE</option>
+                <option value="uk">United Kingdom</option>
+                <option value="singapore">Singapore</option>
+                <option value="seychelles">Seychelles</option>
+                <option value="south-africa">South Africa</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label for="industry">Industry</label>
+              <select id="industry">
+                <option value="">Select industry</option>
+                <option value="financial-services">Financial Services</option>
+                <option value="investment-holding">Investment Holding</option>
+                <option value="crypto">Digital Assets / Crypto</option>
+                <option value="real-estate">Real Estate</option>
+                <option value="consulting">Consulting</option>
+                <option value="trading">Trading</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label for="clientType">Client Type</label>
+              <select id="clientType">
+                <option value="">Select type</option>
+                <option value="individual">Individual</option>
+                <option value="corporate">Corporate</option>
+                <option value="trust">Trust</option>
+                <option value="fund">Fund</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label for="beneficialOwners">Beneficial Owners</label>
+              <input type="number" id="beneficialOwners" placeholder="e.g. 2" min="0" />
+            </div>
+
+            <div class="field-group full-width">
+              <label for="businessActivity">Business Activity / Nature of Business</label>
+              <textarea id="businessActivity" rows="4" placeholder="Describe business activity"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="portal-card">
+          <div class="card-header">
+            <div>
+              <p class="card-label">Step 2</p>
+              <h3>Document Upload Center</h3>
+            </div>
+            <span class="status-chip neutral">Awaiting Files</span>
+          </div>
+
+          <div class="upload-zone" id="uploadZone">
+            <input type="file" id="documentUpload" multiple hidden />
+            <div class="upload-content">
+              <div class="upload-icon">↑</div>
+              <h4>Drag and drop documents here</h4>
+              <p>Upload multiple files for identity, corporate, and supporting verification.</p>
+              <button type="button" class="primary-btn" id="browseFilesBtn">Browse Files</button>
+            </div>
+          </div>
+
+          <div class="required-docs">
+            <h4>Suggested Required Documents</h4>
+            <div class="doc-tags">
+              <span>Passport / National ID</span>
+              <span>Proof of Address</span>
+              <span>Certificate of Incorporation</span>
+              <span>Shareholder Register</span>
+              <span>Source of Funds</span>
+              <span>Bank Statement</span>
+            </div>
+          </div>
+
+          <div class="file-list-wrap">
+            <div class="subsection-head">
+              <h4>Uploaded Documents</h4>
+              <span id="fileCountBadge">0 files</span>
+            </div>
+            <div id="fileList" class="file-list empty-state">
+              <p>No documents uploaded yet.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="portal-card">
+          <div class="card-header">
+            <div>
+              <p class="card-label">Step 3</p>
+              <h3>AI Validation Results</h3>
+            </div>
+            <span class="status-chip success">AI Ready</span>
+          </div>
+
+          <div class="validation-grid">
+            <div class="mini-metric">
+              <span>Document Classification</span>
+              <strong id="classificationStatus">Pending</strong>
+            </div>
+            <div class="mini-metric">
+              <span>Field Extraction</span>
+              <strong id="extractionStatus">Pending</strong>
+            </div>
+            <div class="mini-metric">
+              <span>Cross Validation</span>
+              <strong id="crossValidationStatus">Pending</strong>
+            </div>
+            <div class="mini-metric">
+              <span>Average Confidence</span>
+              <strong id="confidenceScore">0%</strong>
+            </div>
+          </div>
+
+          <div class="issues-panel">
+            <div class="subsection-head">
+              <h4>Validation Alerts</h4>
+              <span class="muted-text">AI + rules engine findings</span>
+            </div>
+            <ul id="validationAlerts" class="alert-list">
+              <li>No validation issues detected yet.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <aside class="right-column">
+        <div class="portal-card side-card">
+          <div class="card-header">
+            <div>
+              <p class="card-label">Screening</p>
+              <h3>Risk Screening Overview</h3>
+            </div>
+            <span class="status-chip warning">Review Enabled</span>
+          </div>
+
+          <div class="screening-list">
+            <div class="screening-item">
+              <div>
+                <h4>Sanctions Screening</h4>
+                <p>Match status across restricted party data sources</p>
+              </div>
+              <span class="screening-badge clear" id="sanctionsStatus">Clear</span>
+            </div>
+
+            <div class="screening-item">
+              <div>
+                <h4>PEP Screening</h4>
+                <p>Politically exposed person review</p>
+              </div>
+              <span class="screening-badge watch" id="pepStatus">Watchlist</span>
+            </div>
+
+            <div class="screening-item">
+              <div>
+                <h4>Adverse Media</h4>
+                <p>Negative news and reputational review</p>
+              </div>
+              <span class="screening-badge clear" id="adverseMediaStatus">Clear</span>
+            </div>
+
+            <div class="screening-item">
+              <div>
+                <h4>Jurisdiction Risk</h4>
+                <p>Geographic exposure assessment</p>
+              </div>
+              <span class="screening-badge medium" id="jurisdictionStatus">Moderate</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="portal-card side-card">
+          <div class="card-header">
+            <div>
+              <p class="card-label">Scoring</p>
+              <h3>Risk Rating</h3>
+            </div>
+            <span class="status-chip danger" id="riskChip">Medium Risk</span>
+          </div>
+
+          <div class="risk-score-panel">
+            <div class="risk-ring">
+              <div class="risk-ring-inner">
+                <span id="riskScoreNumber">58</span>
+                <small>/100</small>
+              </div>
+            </div>
+
+            <div class="risk-summary">
+              <h4 id="riskSummaryTitle">Enhanced Due Diligence Recommended</h4>
+              <p id="riskSummaryText">
+                Initial onboarding indicators suggest a moderate-risk profile
+                due to jurisdiction exposure, document complexity, and screening sensitivity.
+              </p>
+            </div>
+          </div>
+
+          <div class="risk-breakdown">
+            <div class="breakdown-row">
+              <span>Jurisdiction Exposure</span>
+              <strong id="jurisdictionScore">18</strong>
+            </div>
+            <div class="breakdown-row">
+              <span>Ownership Complexity</span>
+              <strong id="ownershipScore">12</strong>
+            </div>
+            <div class="breakdown-row">
+              <span>Screening Impact</span>
+              <strong id="screeningScore">16</strong>
+            </div>
+            <div class="breakdown-row">
+              <span>Document Quality</span>
+              <strong id="documentScore">12</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="portal-card side-card">
+          <div class="card-header">
+            <div>
+              <p class="card-label">Pricing</p>
+              <h3>Indicative Onboarding Fee</h3>
+            </div>
+            <span class="status-chip success">Auto Calculated</span>
+          </div>
+
+          <div class="price-panel">
+            <h2 id="priceOutput">$650</h2>
+            <p id="priceTier">Medium-risk onboarding package</p>
+          </div>
+
+          <div class="price-breakdown">
+            <div class="breakdown-row">
+              <span>Base Review Fee</span>
+              <strong id="baseFee">$250</strong>
+            </div>
+            <div class="breakdown-row">
+              <span>Complexity Adjustment</span>
+              <strong id="complexityFee">$150</strong>
+            </div>
+            <div class="breakdown-row">
+              <span>Risk Adjustment</span>
+              <strong id="riskFee">$250</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="portal-card side-card">
+          <div class="card-header">
+            <div>
+              <p class="card-label">Decision</p>
+              <h3>Onboarding Outcome</h3>
+            </div>
+            <span class="status-chip info" id="outcomeChip">Manual Review</span>
+          </div>
+
+          <div class="outcome-box">
+            <h4 id="outcomeTitle">Further Review Required</h4>
+            <p id="outcomeText">
+              Additional verification is recommended before client acceptance.
+              AI checks identified items requiring compliance review.
+            </p>
+          </div>
+
+          <button class="secondary-btn full-btn" id="runAssessmentBtn">
+            Run AI Assessment
+          </button>
+        </div>
+      </aside>
+    </section>
+
+    <section class="portal-card timeline-card">
+      <div class="card-header">
+        <div>
+          <p class="card-label">Audit Trail</p>
+          <h3>Activity Timeline</h3>
+        </div>
+        <span class="status-chip neutral">Live Log</span>
+      </div>
+
+      <div class="timeline" id="activityTimeline">
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <div>
+            <h4>Portal initialized</h4>
+            <p>Client onboarding workspace is ready for document submission and AI assessment.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <div>
+            <h4>No documents uploaded yet</h4>
+            <p>Upload files to begin extraction, screening, and scoring.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="client-onboarding.js"></script>
+</body>
+</html>
