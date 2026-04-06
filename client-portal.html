@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Onboarda Client Portal</title>
+  <meta
+    name="description"
+    content="Client-facing onboarding portal for submitting KYC details and uploading supporting documents."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="portal-body">
+  <main class="client-portal-wrap">
+    <section class="client-hero">
+      <a href="index.html" class="logo" style="margin-bottom:20px;display:inline-flex">
+        <div class="logo-mark">O</div>
+        <span class="logo-text" style="color:#fff">Onboarda</span>
+      </a>
+
+      <p class="label label-indigo" style="margin-bottom:10px">Client Onboarding Portal</p>
+      <h1 class="client-hero-title">Complete your onboarding securely</h1>
+      <p class="client-hero-sub">
+        Submit your company details and upload the required supporting documents.
+        Your onboarding case will be reviewed through our secure compliance workflow.
+      </p>
+
+      <div class="client-progress-card">
+        <div class="client-progress-top">
+          <div>
+            <div class="client-progress-label">Onboarding Progress</div>
+            <div class="client-progress-value" id="client-progress-text">0% complete</div>
+          </div>
+          <span class="validation-pill indigo" id="client-progress-pill">In Progress</span>
+        </div>
+
+        <div class="client-progress-bar">
+          <div class="client-progress-fill" id="client-progress-fill" style="width:0%"></div>
+        </div>
+
+        <div class="client-progress-steps">
+          <span>Profile</span>
+          <span>Documents</span>
+          <span>Submission</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="client-portal-grid">
+      <div class="portal-panel">
+        <div class="portal-panel-head">
+          <div>
+            <div class="portal-panel-title">Entity Details</div>
+            <div class="portal-panel-sub">Tell us who you are onboarding.</div>
+          </div>
+        </div>
+
+        <form id="client-onboarding-form" class="portal-form-grid">
+          <div class="portal-form-field">
+            <label>Entity Name</label>
+            <input type="text" id="client-entity-name" placeholder="e.g. Meridian Holdings Ltd" />
+          </div>
+
+          <div class="portal-form-field">
+            <label>Entity Type</label>
+            <select id="client-entity-type">
+              <option value="Company">Company</option>
+              <option value="Individual">Individual</option>
+              <option value="Trust">Trust</option>
+              <option value="Foundation">Foundation</option>
+            </select>
+          </div>
+
+          <div class="portal-form-field">
+            <label>Jurisdiction</label>
+            <input type="text" id="client-jurisdiction" placeholder="e.g. Mauritius" />
+          </div>
+
+          <div class="portal-form-field">
+            <label>Registration Number</label>
+            <input type="text" id="client-reg-number" placeholder="e.g. C18492" />
+          </div>
+
+          <div class="portal-form-field">
+            <label>Primary Contact Name</label>
+            <input type="text" id="client-contact-name" placeholder="e.g. Ravi Sewchurn" />
+          </div>
+
+          <div class="portal-form-field">
+            <label>Primary Contact Email</label>
+            <input type="email" id="client-contact-email" placeholder="e.g. ravi@email.com" />
+          </div>
+
+          <div class="portal-form-field portal-form-field-full">
+            <label>Business Activity / Notes</label>
+            <textarea id="client-business-notes" placeholder="Briefly describe the business activity, expected account usage, or relevant onboarding context..."></textarea>
+          </div>
+        </form>
+      </div>
+            <div class="portal-stack">
+        <div class="portal-panel">
+          <div class="portal-panel-head">
+            <div>
+              <div class="portal-panel-title">Required Documents</div>
+              <div class="portal-panel-sub">Upload the items below to continue onboarding.</div>
+            </div>
+          </div>
+
+          <div class="client-required-list" id="client-required-list">
+            <div class="client-required-item">
+              <div>
+                <div class="client-required-title">Certificate of Incorporation</div>
+                <div class="client-required-sub">Required for corporate entities</div>
+              </div>
+              <span class="validation-pill orange">Missing</span>
+            </div>
+
+            <div class="client-required-item">
+              <div>
+                <div class="client-required-title">Passport / ID</div>
+                <div class="client-required-sub">Valid government-issued identification</div>
+              </div>
+              <span class="validation-pill orange">Missing</span>
+            </div>
+
+            <div class="client-required-item">
+              <div>
+                <div class="client-required-title">Proof of Address</div>
+                <div class="client-required-sub">Recent utility bill or equivalent proof</div>
+              </div>
+              <span class="validation-pill orange">Missing</span>
+            </div>
+
+            <div class="client-required-item">
+              <div>
+                <div class="client-required-title">UBO Declaration</div>
+                <div class="client-required-sub">Beneficial ownership confirmation</div>
+              </div>
+              <span class="validation-pill orange">Missing</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="portal-panel">
+          <div class="portal-panel-head">
+            <div>
+              <div class="portal-panel-title">Upload Center</div>
+              <div class="portal-panel-sub">Attach your onboarding documents below.</div>
+            </div>
+          </div>
+
+          <div style="padding:18px">
+            <label class="validation-upload" for="client-file-input">
+              <strong>Drop files here or click to upload</strong>
+              <span>PDF, PNG, JPG, JPEG, DOCX</span>
+            </label>
+            <input
+              class="hidden"
+              id="client-file-input"
+              type="file"
+              multiple
+              accept=".pdf,.png,.jpg,.jpeg,.docx"
+            />
+
+            <div class="validation-files" id="client-files-list"></div>
+          </div>
+        </div>
+
+        <div class="portal-panel">
+          <div class="portal-panel-head">
+            <div>
+              <div class="portal-panel-title">Submission</div>
+              <div class="portal-panel-sub">Review the information and send it for compliance review.</div>
+            </div>
+          </div>
+
+          <div class="portal-agent-list">
+            <div class="validation-card">
+              <h4>What happens after submission?</h4>
+              <p>
+                Your documents are routed through the onboarding workflow, including document checks,
+                ownership review, sanctions/PEP screening, and a final compliance recommendation.
+              </p>
+            </div>
+
+            <div class="validation-card">
+              <h4>Declaration</h4>
+              <p>
+                By submitting this onboarding package, you confirm that the information provided is accurate
+                to the best of your knowledge and may be reviewed for compliance purposes.
+              </p>
+            </div>
+
+            <div class="client-submit-actions">
+              <button type="button" class="btn-secondary btn-secondary-dark" id="client-save-draft">
+                Save Draft
+              </button>
+              <button type="button" class="btn-primary" id="client-submit-case">
+                Submit Onboarding Pack
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+    <script>
+    const clientState = {
+      files: []
+    };
+
+    function byId(id) {
+      return document.getElementById(id);
+    }
+
+    function formatBytes(bytes) {
+      if (bytes === undefined || bytes === null) return "—";
+      const units = ["B", "KB", "MB", "GB"];
+      let i = 0;
+      let n = bytes;
+      while (n >= 1024 && i < units.length - 1) {
+        n /= 1024;
+        i++;
+      }
+      return `${n >= 10 || i === 0 ? Math.round(n) : n.toFixed(1)} ${units[i]}`;
+    }
+
+    function escapeHtml(str) {
+      return String(str ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function calculateProgress() {
+      const fields = [
+        byId("client-entity-name")?.value.trim(),
+        byId("client-jurisdiction")?.value.trim(),
+        byId("client-contact-name")?.value.trim(),
+        byId("client-contact-email")?.value.trim()
+      ];
+
+      const filledFields = fields.filter(Boolean).length;
+      const fieldProgress = (filledFields / fields.length) * 60;
+      const fileProgress = Math.min(clientState.files.length, 4) / 4 * 40;
+
+      return Math.round(fieldProgress + fileProgress);
+    }
+
+    function updateProgress() {
+      const progress = calculateProgress();
+      const fill = byId("client-progress-fill");
+      const text = byId("client-progress-text");
+      const pill = byId("client-progress-pill");
+
+      if (fill) fill.style.width = `${progress}%`;
+      if (text) text.textContent = `${progress}% complete`;
+
+      if (pill) {
+        if (progress >= 100) {
+          pill.className = "validation-pill green";
+          pill.textContent = "Ready";
+        } else if (progress >= 50) {
+          pill.className = "validation-pill orange";
+          pill.textContent = "In Progress";
+        } else {
+          pill.className = "validation-pill indigo";
+          pill.textContent = "Started";
+        }
+      }
+    }
+
+    function renderFiles() {
+      const list = byId("client-files-list");
+      if (!list) return;
+
+      if (!clientState.files.length) {
+        list.innerHTML = "";
+        updateRequiredDocs();
+        updateProgress();
+        return;
+      }
+
+      list.innerHTML = clientState.files.map((file) => `
+        <div class="validation-file">
+          <div>
+            <strong>${escapeHtml(file.name)}</strong>
+            <small>${escapeHtml(file.type || "unknown")} · ${formatBytes(file.size || 0)}</small>
+          </div>
+          <span class="validation-pill green">Uploaded</span>
+        </div>
+      `).join("");
+
+      updateRequiredDocs();
+      updateProgress();
+    }
+
+    function updateRequiredDocs() {
+      const items = Array.from(document.querySelectorAll(".client-required-item"));
+      const names = clientState.files.map(file => file.name.toLowerCase());
+
+      items.forEach((item) => {
+        const title = item.querySelector(".client-required-title")?.textContent || "";
+        const pill = item.querySelector(".validation-pill");
+        let complete = false;
+
+        if (title.includes("Certificate")) {
+          complete = names.some(name => name.includes("certificate") || name.includes("incorporation"));
+        } else if (title.includes("Passport")) {
+          complete = names.some(name => name.includes("passport") || name.includes("id"));
+        } else if (title.includes("Proof of Address")) {
+          complete = names.some(name => name.includes("address") || name.includes("utility") || name.includes("bill"));
+        } else if (title.includes("UBO")) {
+          complete = names.some(name => name.includes("ubo") || name.includes("beneficial"));
+        }
+
+        if (pill) {
+          pill.className = complete ? "validation-pill green" : "validation-pill orange";
+          pill.textContent = complete ? "Uploaded" : "Missing";
+        }
+      });
+    }
+
+    function buildSubmissionPayload(status) {
+      return {
+        reference: `CL-${Date.now()}`,
+        entityName: byId("client-entity-name")?.value.trim() || "",
+        entityType: byId("client-entity-type")?.value || "Company",
+        jurisdiction: byId("client-jurisdiction")?.value.trim() || "",
+        regNumber: byId("client-reg-number")?.value.trim() || "",
+        contactName: byId("client-contact-name")?.value.trim() || "",
+        contactEmail: byId("client-contact-email")?.value.trim() || "",
+        notes: byId("client-business-notes")?.value.trim() || "",
+        files: clientState.files.map(file => ({
+          name: file.name,
+          size: file.size,
+          type: file.type
+        })),
+        status,
+        savedAt: new Date().toISOString()
+      };
+    }
+
+    function saveDraft() {
+      const payload = buildSubmissionPayload("draft");
+      localStorage.setItem("onboarda_client_draft", JSON.stringify(payload));
+      alert("Draft saved.");
+    }
+
+    function submitCase() {
+      const entityName = byId("client-entity-name")?.value.trim();
+      const jurisdiction = byId("client-jurisdiction")?.value.trim();
+      const contactName = byId("client-contact-name")?.value.trim();
+      const contactEmail = byId("client-contact-email")?.value.trim();
+
+      if (!entityName || !jurisdiction || !contactName || !contactEmail) {
+        alert("Please complete the required profile details before submitting.");
+        return;
+      }
+
+      if (clientState.files.length < 2) {
+        alert("Please upload at least two supporting documents before submitting.");
+        return;
+      }
+
+      const payload = buildSubmissionPayload("submitted");
+      localStorage.setItem("onboarda_client_submission", JSON.stringify(payload));
+
+      alert("Onboarding pack submitted successfully.");
+      window.location.href = "portal.html";
+    }
+
+    function bindClientEvents() {
+      const fileInput = byId("client-file-input");
+      if (fileInput) {
+        fileInput.addEventListener("change", (event) => {
+          clientState.files = Array.from(event.target.files || []);
+          renderFiles();
+        });
+      }
+
+      [
+        "client-entity-name",
+        "client-jurisdiction",
+        "client-contact-name",
+        "client-contact-email"
+      ].forEach((id) => {
+        const el = byId(id);
+        if (el) {
+          el.addEventListener("input", updateProgress);
+        }
+      });
+
+      const saveDraftBtn = byId("client-save-draft");
+      const submitBtn = byId("client-submit-case");
+
+      if (saveDraftBtn) saveDraftBtn.addEventListener("click", saveDraft);
+      if (submitBtn) submitBtn.addEventListener("click", submitCase);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      bindClientEvents();
+      renderFiles();
+      updateProgress();
+    });
+  </script>
+</body>
+</html>
