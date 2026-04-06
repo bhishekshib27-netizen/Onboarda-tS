@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Onboarda Entity Workspace</title>
+  <meta
+    name="description"
+    content="Entity-level onboarding workspace for reviewing KYC documents, AI outputs, risk scoring, and compliance decisions."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="portal-body">
+  <div class="portal-shell">
+    <aside class="portal-sidebar">
+      <div>
+        <a href="index.html" class="logo portal-logo">
+          <div class="logo-mark">O</div>
+          <span class="logo-text">Onboarda</span>
+        </a>
+
+        <div class="portal-sidebar-label">Workspace</div>
+
+        <nav class="portal-nav">
+          <a href="portal.html" class="portal-nav-item">
+            <span class="portal-nav-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 4.5h16.5v6H3.75v-6zm0 9h7.5v6h-7.5v-6zm10.5 0h6v6h-6v-6z"/>
+              </svg>
+            </span>
+            Dashboard
+          </a>
+
+          <a href="#" class="portal-nav-item active">
+            <span class="portal-nav-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/>
+              </svg>
+            </span>
+            Entity Workspace
+          </a>
+        </nav>
+      </div>
+
+      <div class="portal-sidebar-footer">
+        <div class="portal-user-card">
+          <div class="portal-user-avatar">BS</div>
+          <div>
+            <div class="portal-user-name">Bhishek</div>
+            <div class="portal-user-role">Compliance Workspace</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="portal-main">
+      <header class="portal-topbar">
+        <div>
+          <p class="label label-indigo" style="margin-bottom:8px">Entity Workspace</p>
+          <h1 class="portal-page-title" id="entity-page-title">Entity Review</h1>
+          <p class="portal-page-sub" id="entity-page-sub">
+            Review onboarding documents, AI findings, and route this case through approval.
+          </p>
+        </div>
+
+        <div class="portal-topbar-actions">
+          <a class="btn-secondary btn-secondary-dark" href="portal.html">Back to Dashboard</a>
+        </div>
+      </header>
+
+      <section class="portal-kpis">
+        <div class="portal-kpi-card">
+          <div class="portal-kpi-label">Reference</div>
+          <div class="portal-kpi-value" id="entity-reference">—</div>
+          <div class="portal-kpi-foot">Internal onboarding case reference</div>
+        </div>
+
+        <div class="portal-kpi-card">
+          <div class="portal-kpi-label">Risk Band</div>
+          <div class="portal-kpi-value" id="entity-risk-band">—</div>
+          <div class="portal-kpi-foot">Current classification from risk routing</div>
+        </div>
+
+        <div class="portal-kpi-card">
+          <div class="portal-kpi-label">Risk Score</div>
+          <div class="portal-kpi-value" id="entity-risk-score">—</div>
+          <div class="portal-kpi-foot">Weighted onboarding risk score</div>
+        </div>
+
+        <div class="portal-kpi-card">
+          <div class="portal-kpi-label">Status</div>
+          <div class="portal-kpi-value" id="entity-status-value">—</div>
+          <div class="portal-kpi-foot">Latest case routing status</div>
+        </div>
+      </section>
+            <section class="portal-grid">
+        <div class="portal-stack">
+          <div class="portal-panel">
+            <div class="portal-panel-head">
+              <div>
+                <div class="portal-panel-title">Entity Overview</div>
+                <div class="portal-panel-sub">Core onboarding profile and operating context.</div>
+              </div>
+            </div>
+
+            <div class="portal-agent-list">
+              <div class="validation-card">
+                <h4 id="overview-name">Entity Name: —</h4>
+                <p id="overview-meta">Type, jurisdiction, ownership and registration details will appear here.</p>
+              </div>
+
+              <div class="validation-card">
+                <h4>Compliance Notes</h4>
+                <p id="overview-notes">No notes available yet.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="portal-panel">
+            <div class="portal-panel-head">
+              <div>
+                <div class="portal-panel-title">Uploaded Documents</div>
+                <div class="portal-panel-sub">Current document pack linked to this onboarding case.</div>
+              </div>
+            </div>
+
+            <div class="portal-agent-list" id="entity-documents-list">
+              <div class="validation-card">
+                <h4>No documents loaded</h4>
+                <p>Document metadata will appear here once linked to the case.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="portal-panel">
+            <div class="portal-panel-head">
+              <div>
+                <div class="portal-panel-title">AI Agent Output</div>
+                <div class="portal-panel-sub">Five-agent review layer for this entity.</div>
+              </div>
+            </div>
+
+            <div class="portal-agent-list" id="entity-agent-output">
+              <div class="portal-agent-card">
+                <div class="portal-agent-top">
+                  <div>
+                    <div class="portal-agent-name">Agent 1</div>
+                    <div class="portal-agent-task">Entity & Registration Validation</div>
+                  </div>
+                  <span class="validation-pill green">Complete</span>
+                </div>
+                <div class="portal-agent-meta" id="agent-1-text">
+                  Registry information aligned with onboarding data.
+                </div>
+              </div>
+
+              <div class="portal-agent-card">
+                <div class="portal-agent-top">
+                  <div>
+                    <div class="portal-agent-name">Agent 2</div>
+                    <div class="portal-agent-task">ID & Document Verification</div>
+                  </div>
+                  <span class="validation-pill orange">Review</span>
+                </div>
+                <div class="portal-agent-meta" id="agent-2-text">
+                  Document quality and validity checks are pending confirmation.
+                </div>
+              </div>
+
+              <div class="portal-agent-card">
+                <div class="portal-agent-top">
+                  <div>
+                    <div class="portal-agent-name">Agent 3</div>
+                    <div class="portal-agent-task">UBO & Ownership Analysis</div>
+                  </div>
+                  <span class="validation-pill indigo">Running</span>
+                </div>
+                <div class="portal-agent-meta" id="agent-3-text">
+                  Beneficial ownership logic and structure mapping in progress.
+                </div>
+              </div>
+
+              <div class="portal-agent-card">
+                <div class="portal-agent-top">
+                  <div>
+                    <div class="portal-agent-name">Agent 4</div>
+                    <div class="portal-agent-task">Sanctions / PEP / Adverse Media</div>
+                  </div>
+                  <span class="validation-pill green">Screened</span>
+                </div>
+                <div class="portal-agent-meta" id="agent-4-text">
+                  Screening returned no material concerns so far.
+                </div>
+              </div>
+
+              <div class="portal-agent-card">
+                <div class="portal-agent-top">
+                  <div>
+                    <div class="portal-agent-name">Agent 5</div>
+                    <div class="portal-agent-task">Compliance Memo Synthesis</div>
+                  </div>
+                  <span class="validation-pill indigo">Queued</span>
+                </div>
+                <div class="portal-agent-meta" id="agent-5-text">
+                  Final recommendation will be generated after checks are complete.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="portal-stack">
+          <div class="portal-panel">
+            <div class="portal-panel-head">
+              <div>
+                <div class="portal-panel-title">Risk Flags</div>
+                <div class="portal-panel-sub">Issues requiring confirmation or escalation.</div>
+              </div>
+            </div>
+
+            <div class="portal-activity-list" id="entity-flags-list">
+              <div class="validation-card">
+                <h4>No material flags</h4>
+                <p>This case has not triggered any major blockers yet.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="portal-panel">
+            <div class="portal-panel-head">
+              <div>
+                <div class="portal-panel-title">Decision Panel</div>
+                <div class="portal-panel-sub">Route the case based on current evidence.</div>
+              </div>
+            </div>
+
+            <div class="portal-agent-list">
+              <div class="validation-card">
+                <h4>Recommended Routing</h4>
+                <p id="entity-recommendation">
+                  Recommendation will update based on the entity’s current risk and status.
+                </p>
+              </div>
+
+              <div class="portal-form-grid" style="padding:0">
+                <div class="portal-form-field portal-form-field-full">
+                  <label>Officer Comment</label>
+                  <textarea id="entity-officer-comment" placeholder="Add a short comment before updating status..."></textarea>
+                </div>
+
+                <div class="portal-form-field">
+                  <label>Decision</label>
+                  <select id="entity-decision-select">
+                    <option value="Approved">Approve</option>
+                    <option value="In Review">Keep In Review</option>
+                    <option value="Pre-Approval">Move to Pre-Approval</option>
+                    <option value="Escalated">Escalate</option>
+                    <option value="Pending Documents">Request More Documents</option>
+                  </select>
+                </div>
+
+                <div class="portal-form-field">
+                  <label>Update Case</label>
+                  <button type="button" class="btn-primary" id="save-entity-decision" style="height:48px;justify-content:center">
+                    Save Decision
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portal-panel">
+            <div class="portal-panel-head">
+              <div>
+                <div class="portal-panel-title">Audit Trail</div>
+                <div class="portal-panel-sub">Recent case-level actions and timeline markers.</div>
+              </div>
+            </div>
+
+            <div class="portal-activity-list" id="entity-audit-list">
+              <div class="validation-card">
+                <h4>Case opened</h4>
+                <p>This entity workspace was loaded for review.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+          </main>
+  </div>
+
+  <script>
+    function byId(id) {
+      return document.getElementById(id);
+    }
+
+    function escapeHtml(str) {
+      return String(str ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function loadEntity() {
+      const entity = JSON.parse(localStorage.getItem("current_entity") || "null");
+
+      if (!entity) {
+        byId("entity-page-title").textContent = "No Entity Selected";
+        byId("entity-page-sub").textContent = "Go back to the dashboard and open an entity first.";
+        return null;
+      }
+
+      byId("entity-page-title").textContent = entity.name;
+      byId("entity-page-sub").textContent =
+        `${entity.type} · ${entity.jurisdiction} · Relationship owner: ${entity.owner || "Unassigned"}`;
+
+      byId("entity-reference").textContent = entity.reference || "—";
+      byId("entity-risk-band").textContent = entity.risk || "—";
+      byId("entity-risk-score").textContent = entity.score ?? "—";
+      byId("entity-status-value").textContent = entity.status || "—";
+
+      byId("overview-name").textContent = `Entity Name: ${entity.name || "—"}`;
+      byId("overview-meta").textContent =
+        `${entity.type || "—"} entity in ${entity.jurisdiction || "—"} · Registration: ${entity.regNumber || "-"} · Owner: ${entity.owner || "Unassigned"} · Documents: ${entity.documents ?? 0}`;
+      byId("overview-notes").textContent = entity.notes || "No notes available yet.";
+
+      renderDocuments(entity);
+      renderFlags(entity);
+      renderRecommendation(entity);
+      renderAudit(entity);
+
+      return entity;
+    }
+
+    function renderDocuments(entity) {
+      const container = byId("entity-documents-list");
+      const docs = Number(entity.documents || 0);
+
+      if (!docs) {
+        container.innerHTML = `
+          <div class="validation-card">
+            <h4>No documents loaded</h4>
+            <p>This entity currently has no attached onboarding files.</p>
+          </div>
+        `;
+        return;
+      }
+
+      const sampleDocs = [
+        "Certificate of Incorporation.pdf",
+        "Passport.jpg",
+        "Proof of Address.pdf",
+        "UBO Declaration.docx",
+        "Bank Statement.pdf",
+        "Source of Funds.pdf",
+        "Corporate Structure Chart.pdf"
+      ].slice(0, docs);
+
+      container.innerHTML = sampleDocs.map((doc, index) => `
+        <div class="validation-card">
+          <h4>${index + 1}. ${escapeHtml(doc)}</h4>
+          <p>Linked to the onboarding pack and available for AI review.</p>
+        </div>
+      `).join("");
+    }
+
+    function renderFlags(entity) {
+      const container = byId("entity-flags-list");
+      const flags = [];
+
+      if (entity.risk === "High") {
+        flags.push({
+          title: "High risk classification",
+          body: "The case risk score places this entity in the enhanced review band."
+        });
+      }
+
+      if (entity.risk === "Very High") {
+        flags.push({
+          title: "Very high risk escalation",
+          body: "This case should not proceed without enhanced due diligence and officer sign-off."
+        });
+      }
+
+      if (entity.status === "Pending Documents") {
+        flags.push({
+          title: "Missing documents",
+          body: "The onboarding pack is incomplete and additional supporting documents are required."
+        });
+      }
+
+      if (Number(entity.documents || 0) < 3) {
+        flags.push({
+          title: "Weak document coverage",
+          body: "Too few onboarding files are present for a strong automated assessment."
+        });
+      }
+
+      if (entity.status === "Escalated") {
+        flags.push({
+          title: "Escalated case",
+          body: "This entity is already in the escalation queue and requires senior compliance review."
+        });
+      }
+
+      if (!flags.length) {
+        container.innerHTML = `
+          <div class="validation-card">
+            <h4>No material flags</h4>
+            <p>This case has not triggered any major blockers yet.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = flags.map(flag => `
+        <div class="validation-card">
+          <h4>${escapeHtml(flag.title)}</h4>
+          <p>${escapeHtml(flag.body)}</p>
+        </div>
+      `).join("");
+    }
+
+    function renderRecommendation(entity) {
+      const el = byId("entity-recommendation");
+
+      if (entity.status === "Escalated" || entity.risk === "Very High") {
+        el.textContent =
+          "Recommended action: escalate and hold approval until enhanced due diligence is completed.";
+        return;
+      }
+
+      if (entity.status === "Pending Documents" || Number(entity.documents || 0) < 3) {
+        el.textContent =
+          "Recommended action: request additional documents before moving this case forward.";
+        return;
+      }
+
+      if (entity.risk === "High") {
+        el.textContent =
+          "Recommended action: keep under review and confirm source of funds / ownership clarity before approval.";
+        return;
+      }
+
+      el.textContent =
+        "Recommended action: move toward pre-approval or approval, subject to final officer confirmation.";
+    }
+
+    function renderAudit(entity) {
+      const container = byId("entity-audit-list");
+
+      const items = [
+        `Case loaded for ${entity.name}.`,
+        `Current status is ${entity.status}.`,
+        `Risk band is ${entity.risk} with score ${entity.score}.`,
+        `${entity.documents || 0} document(s) linked to the onboarding case.`
+      ];
+
+      container.innerHTML = items.map((item, index) => `
+        <div class="validation-card">
+          <h4>${index + 1}. Audit Event</h4>
+          <p>${escapeHtml(item)}</p>
+        </div>
+      `).join("");
+    }
+
+    function saveDecision() {
+      const entity = JSON.parse(localStorage.getItem("current_entity") || "null");
+      if (!entity) return;
+
+      const decision = byId("entity-decision-select").value;
+      const comment = byId("entity-officer-comment").value.trim();
+
+      entity.status = decision;
+
+      if (comment) {
+        entity.notes = comment;
+      }
+
+      localStorage.setItem("current_entity", JSON.stringify(entity));
+
+      const allEntities = JSON.parse(localStorage.getItem("onboarda_entities") || "[]");
+      const updated = allEntities.map(item => item.id === entity.id ? entity : item);
+      localStorage.setItem("onboarda_entities", JSON.stringify(updated));
+
+      loadEntity();
+      alert("Entity decision saved.");
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      loadEntity();
+
+      const saveBtn = byId("save-entity-decision");
+      if (saveBtn) {
+        saveBtn.addEventListener("click", saveDecision);
+      }
+    });
+  </script>
+</body>
+</html>
