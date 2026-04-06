@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Onboarda — Compliance. Automated. Explained.</title>
+  <meta
+    name="description"
+    content="AI-powered compliance onboarding, risk scoring, and monitoring platform for regulated institutions."
+  />
+  <meta property="og:title" content="Onboarda — Compliance. Automated. Explained." />
+  <meta
+    property="og:description"
+    content="AI-powered compliance onboarding and monitoring for regulated institutions."
+  />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a href="#" class="logo">
+        <div class="logo-mark">O</div>
+        <span class="logo-text">Onboarda</span>
+      </a>
+
+      <nav class="nav">
+        <a href="#features">Features</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#management">Management Cos</a>
+        <a href="#platform">Platform</a>
+      </nav>
+
+      <div style="display:flex;gap:12px;align-items:center">
+        <a class="btn-primary" href="#demo" style="padding:10px 24px;font-size:13px">
+          Request Demo
+        </a>
+        <button
+          class="mobile-toggle"
+          onclick="document.getElementById('mobile-menu').classList.add('open')"
+          aria-label="Menu"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <button
+      class="mobile-close"
+      onclick="document.getElementById('mobile-menu').classList.remove('open')"
+    >
+      &times;
+    </button>
+    <a href="#features" onclick="this.parentElement.classList.remove('open')">Features</a>
+    <a href="#workflow" onclick="this.parentElement.classList.remove('open')">Workflow</a>
+    <a href="#management" onclick="this.parentElement.classList.remove('open')">Management Cos</a>
+    <a href="#platform" onclick="this.parentElement.classList.remove('open')">Platform</a>
+    <a class="btn-primary" href="#demo" onclick="this.parentElement.classList.remove('open')">
+      Request Demo
+    </a>
+  </div>
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <canvas id="particles-canvas"></canvas>
+
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="fade-in">
+          <div class="hero-tag">
+            <div class="hero-tag-dot"></div>
+            <span class="hero-tag-text">RegTech Infrastructure</span>
+          </div>
+        </div>
+
+        <h1 class="heading-xl fade-in d1" style="margin-bottom:24px">
+          <span id="typed-line1">Compliance.</span>
+          <span class="gradient-text" id="typed-line2">Automated.</span>
+          <span id="typed-line3">Explained.</span>
+          <span class="typing-cursor" id="cursor"></span>
+        </h1>
+
+        <p class="text-sub fade-in d2" style="max-width:480px;margin-bottom:36px">
+          Onboard clients faster while maintaining full regulatory control. AI-powered onboarding,
+          risk scoring, and compliance workflows — in one platform.
+        </p>
+
+        <div class="fade-in d3" style="display:flex;gap:16px;flex-wrap:wrap">
+          <a class="btn-primary" href="#demo">
+            Request Demo
+            <svg class="arrow-icon" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+            </svg>
+          </a>
+          <a class="btn-secondary" href="#platform">View Platform</a>
+        </div>
+
+        <div class="hero-stats fade-in d4">
+          <div>
+            <div class="stat-value counter" data-target="5" style="font-size:24px;font-weight:800">0</div>
+            <div style="font-size:12px;color:rgba(15,17,23,.45);font-weight:500;margin-top:2px">
+              AI Agents
+            </div>
+          </div>
+          <div>
+            <div style="font-size:24px;font-weight:800">
+              &lt; <span class="counter" data-target="24">0</span>h
+            </div>
+            <div style="font-size:12px;color:rgba(15,17,23,.45);font-weight:500;margin-top:2px">
+              Avg. Onboarding
+            </div>
+          </div>
+          <div>
+            <div class="stat-value counter" data-target="100" data-suffix="%" style="font-size:24px;font-weight:800">
+              0
+            </div>
+            <div style="font-size:12px;color:rgba(15,17,23,.45);font-weight:500;margin-top:2px">
+              Audit Coverage
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual parallax-layer" data-speed="0.03">
+        <div class="mockup" id="hero-mode-mockup">
+          <div class="mockup-titlebar">
+            <div class="mockup-dot" style="background:#ff5f57"></div>
+            <div class="mockup-dot" style="background:#febc2e"></div>
+            <div class="mockup-dot" style="background:#28c840"></div>
+            <span class="mockup-title">Onboarda — Back Office</span>
+          </div>
+
+          <div class="mockup-stats" id="mockup-stats">
+            <div>
+              <div class="mockup-stat-label">Active Clients</div>
+              <div class="mockup-stat-value">
+                <span class="counter" data-target="247">0</span>
+              </div>
+            </div>
+            <div style="text-align:center">
+              <div class="mockup-stat-label">Pending Review</div>
+              <div class="mockup-stat-value">
+                <span class="counter" data-target="14">0</span>
+              </div>
+            </div>
+            <div style="text-align:center">
+              <div class="mockup-stat-label">Pre-Approval Queue</div>
+              <div class="mockup-stat-value">
+                <span class="counter" data-target="3">0</span>
+              </div>
+            </div>
+            <div style="text-align:center">
+              <div class="mockup-stat-label">Avg. Risk Score</div>
+              <div class="mockup-stat-value">
+                <span class="counter" data-target="34">0</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mockup-thead">
+            <span>Reference</span>
+            <span>Company</span>
+            <span>Risk</span>
+            <span>Score</span>
+            <span>Status</span>
+          </div>
+
+          <div id="mockup-rows"></div>
+        </div>
+
+        <div class="validation-shell hidden" id="hero-mode-validation">
+          <div class="validation-header">
+            <div>
+              <div class="validation-title">Document Validation Layer</div>
+              <div class="validation-score-wrap">
+                <div class="validation-ring" id="validation-ring">
+                  <span id="validation-ring-text">0%</span>
+                </div>
+                <div>
+                  <div class="validation-decision" id="validation-decision">
+                    Awaiting analysis
+                  </div>
+                  <div class="validation-sub" id="validation-sub">
+                    Upload documents, pass them through the backend, and validate extracted data with safer logic.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="validation-pill indigo" id="validation-pill">No result yet</div>
+          </div>
+
+          <div class="validation-kpis">
+            <div class="validation-kpi">
+              <div class="validation-kpi-value" id="kpi-docs">0</div>
+              <div class="validation-kpi-label">Documents</div>
+            </div>
+            <div class="validation-kpi">
+              <div class="validation-kpi-value" id="kpi-fields">0</div>
+              <div class="validation-kpi-label">Fields Extracted</div>
+            </div>
+            <div class="validation-kpi">
+              <div class="validation-kpi-value" id="kpi-confidence">0%</div>
+              <div class="validation-kpi-label">Confidence</div>
+            </div>
+            <div class="validation-kpi">
+              <div class="validation-kpi-value" id="kpi-issues">0</div>
+              <div class="validation-kpi-label">Flags</div>
+            </div>
+          </div>
+
+          <div class="validation-grid">
+            <div class="validation-field">
+              <label>Client name</label>
+              <input
+                class="validation-input"
+                id="validation-client-name"
+                placeholder="e.g. Meridian Holdings Ltd"
+              />
+            </div>
+
+            <div class="validation-field">
+              <label>Entity type</label>
+              <select class="validation-select" id="validation-entity-type">
+                <option>Company</option>
+                <option>Individual</option>
+                <option>Trust</option>
+                <option>Foundation</option>
+              </select>
+            </div>
+
+            <div class="validation-field">
+              <label>Auto-approve threshold</label>
+              <select class="validation-select" id="validation-approve-threshold">
+                <option value="92">92%</option>
+                <option value="90" selected>90%</option>
+                <option value="88">88%</option>
+                <option value="85">85%</option>
+              </select>
+            </div>
+
+            <div class="validation-field">
+              <label>Human review threshold</label>
+              <select class="validation-select" id="validation-review-threshold">
+                <option value="75">75%</option>
+                <option value="80" selected>80%</option>
+                <option value="82">82%</option>
+                <option value="85">85%</option>
+              </select>
+            </div>
+          </div>
+
+          <label class="validation-upload" for="validation-file-input">
+            <strong>Drop files here or click to upload</strong>
+            <span>PDF, PNG, JPG, JPEG, DOCX — real upload testing connected to backend</span>
+          </label>
+
+          <input
+            class="hidden"
+            id="validation-file-input"
+            type="file"
+            multiple
+            accept=".pdf,.png,.jpg,.jpeg,.docx"
+          />
+
+          <div class="validation-files" id="validation-files"></div>
+
+          <div class="validation-field" style="margin-top:12px">
+            <label>Raw extracted text / OCR dump</label>
+            <textarea
+              class="validation-textarea"
+              id="validation-raw-text"
+              placeholder="Paste OCR output, extracted text, or AI extraction input here..."
+            ></textarea>
+          </div>
+
+          <div class="validation-actions">
+            <button class="btn-primary" id="validation-analyze-btn">Run Validation</button>
+            <button class="btn-secondary btn-secondary-dark" id="validation-upload-btn">
+              Upload to Backend
+            </button>
+            <button class="btn-secondary btn-secondary-dark" id="validation-load-sample-btn">
+              Load Sample
+            </button>
+            <button class="btn-secondary btn-secondary-dark" id="validation-reset-btn">
+              Reset
+            </button>
+          </div>
+
+          <div class="validation-tabs">
+            <button class="validation-tab active" data-tab="fields">Extracted fields</button>
+            <button class="validation-tab" data-tab="issues">Issues</button>
+            <button class="validation-tab" data-tab="checks">Checks</button>
+            <button class="validation-tab" data-tab="timeline">Processing log</button>
+          </div>
+
+          <div class="validation-panel active" id="validation-panel-fields">
+            <table class="validation-table">
+              <thead>
+                <tr>
+                  <th>Field</th>
+                  <th>Value</th>
+                  <th>Confidence</th>
+                  <th>Source</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="validation-fields-body">
+                <tr>
+                  <td colspan="5" style="color:rgba(255,255,255,.45)">No analysis yet.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="validation-panel" id="validation-panel-issues">
+            <div class="validation-list" id="validation-issues-list">
+              <div class="validation-card">
+                <h4>No issues yet</h4>
+                <p>Run analysis to detect weak fields, mismatches, and review blockers.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="validation-panel" id="validation-panel-checks">
+            <div class="validation-list" id="validation-checks-list">
+              <div class="validation-card">
+                <h4>No checks run</h4>
+                <p>
+                  The validation layer will score coverage, consistency, traceability, and approval readiness.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="validation-panel" id="validation-panel-timeline">
+            <div class="validation-list" id="validation-timeline-list">
+              <div class="validation-card">
+                <h4>No events yet</h4>
+                <p>Pipeline activity will appear here.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="validation-banner" id="validation-banner"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="proof-bar">
+    <div class="proof-track" id="proof-track"></div>
+  </div>
+
+  <section>
+    <div class="section">
+      <div class="text-center fade-in" style="margin-bottom:64px">
+        <p class="label label-indigo">The Problem</p>
+        <h2 class="heading-lg">Compliance shouldn't be a bottleneck</h2>
+        <p class="text-sub" style="max-width:560px;margin:16px auto 0">
+          Traditional onboarding is slow, manual, and doesn't scale. Every new client creates more risk — not less.
+        </p>
+      </div>
+      <div class="grid-4" id="problems-grid"></div>
+    </div>
+  </section>
+
+  <section class="section-subtle">
+    <div class="section">
+      <div class="grid-2">
+        <div class="fade-in">
+          <p class="label label-indigo">The Solution</p>
+          <h2 class="heading-lg" style="margin-bottom:20px">
+            A Compliance<br />
+            <span class="gradient-text">Operating System</span>
+          </h2>
+          <p style="font-size:17px;color:rgba(15,17,23,.55);line-height:1.75;margin-bottom:32px">
+            Onboarda replaces spreadsheets, email chains, and disconnected tools with a single platform
+            that automates the entire compliance lifecycle — from first application to ongoing monitoring.
+          </p>
+
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <div class="check-item">
+              <div class="check-icon">
+                <svg viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                </svg>
+              </div>
+              <span style="font-size:15px;color:rgba(15,17,23,.7);font-weight:500">
+                Reduce onboarding from weeks to hours
+              </span>
+            </div>
+
+            <div class="check-item">
+              <div class="check-icon">
+                <svg viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                </svg>
+              </div>
+              <span style="font-size:15px;color:rgba(15,17,23,.7);font-weight:500">
+                Five AI agents working in parallel
+              </span>
+            </div>
+
+            <div class="check-item">
+              <div class="check-icon">
+                <svg viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                </svg>
+              </div>
+              <span style="font-size:15px;color:rgba(15,17,23,.7);font-weight:500">
+                Every decision explainable and auditable
+              </span>
+            </div>
+
+            <div class="check-item">
+              <div class="check-icon">
+                <svg viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                </svg>
+              </div>
+              <span style="font-size:15px;color:rgba(15,17,23,.7);font-weight:500">
+                Human-in-the-loop approvals at every stage
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="fade-in d2" id="pipeline-desktop">
+          <div class="pipeline" id="pipeline-container"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="section">
+      <div class="text-center fade-in" style="margin-bottom:64px">
+        <p class="label label-indigo">Features</p>
+        <h2 class="heading-lg">Everything you need. Nothing you don't.</h2>
+      </div>
+      <div class="grid-3" id="features-grid"></div>
+    </div>
+  </section>
+
+  <section class="section-dark" id="workflow">
+    <div class="section">
+      <div class="text-center fade-in" style="margin-bottom:64px">
+        <p class="label label-violet">Workflow</p>
+        <h2 class="heading-lg" style="color:#fff">From application to monitoring</h2>
+        <p style="font-size:17px;line-height:1.7;color:rgba(255,255,255,.45);max-width:500px;margin:16px auto 0">
+          A structured, auditable workflow with human oversight at every critical decision point.
+        </p>
+      </div>
+
+      <div class="grid-3" style="gap:16px" id="workflow-grid"></div>
+
+      <div class="text-center">
+        <div class="hitl-badge fade-in d4">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#818cf8" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
+          </svg>
+          <span style="font-size:15px;font-weight:600;color:#c7d2fe">
+            Human-in-the-loop. Always.
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+    <section id="management">
+    <div class="section">
+      <div class="grid-2">
+        <div class="fade-in portfolio">
+          <div class="portfolio-title">Portfolio Risk Overview</div>
+
+          <div class="portfolio-grid">
+            <div class="portfolio-stat">
+              <div class="portfolio-stat-label">Total Clients</div>
+              <div class="portfolio-stat-value" style="color:#0f1117">
+                <span class="counter" data-target="312">0</span>
+              </div>
+            </div>
+
+            <div class="portfolio-stat">
+              <div class="portfolio-stat-label">High Risk</div>
+              <div class="portfolio-stat-value" style="color:#d97706">
+                <span class="counter" data-target="28">0</span>
+              </div>
+            </div>
+
+            <div class="portfolio-stat">
+              <div class="portfolio-stat-label">Pending Review</div>
+              <div class="portfolio-stat-value" style="color:#6366f1">
+                <span class="counter" data-target="14">0</span>
+              </div>
+            </div>
+
+            <div class="portfolio-stat">
+              <div class="portfolio-stat-label">Overdue Reviews</div>
+              <div class="portfolio-stat-value" style="color:#dc2626">
+                <span class="counter" data-target="3">0</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="risk-bar">
+            <div class="risk-bar-segment" style="flex:45;background:#16a34a"></div>
+            <div class="risk-bar-segment" style="flex:30;background:#2563eb"></div>
+            <div class="risk-bar-segment" style="flex:18;background:#d97706"></div>
+            <div class="risk-bar-segment" style="flex:7;background:#dc2626"></div>
+          </div>
+
+          <div class="risk-bar-labels">
+            <span>Low 45%</span>
+            <span>Medium 30%</span>
+            <span>High 18%</span>
+            <span>Very High 7%</span>
+          </div>
+        </div>
+
+        <div class="fade-in d1">
+          <p class="label label-indigo">For Management Companies</p>
+          <h2 class="heading-lg" style="margin-bottom:20px">
+            Built for portfolio-scale compliance
+          </h2>
+          <p style="font-size:17px;color:rgba(15,17,23,.55);line-height:1.75;margin-bottom:32px">
+            Manage hundreds of clients across multiple risk profiles. Real-time portfolio risk views,
+            automated periodic reviews, and white-label capability for your brand.
+          </p>
+
+          <div style="display:flex;flex-direction:column;gap:16px" id="mgmt-features"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-subtle" id="platform">
+    <div class="section">
+      <div class="text-center fade-in" style="margin-bottom:64px">
+        <p class="label label-indigo">Platform</p>
+        <h2 class="heading-lg">See it in action</h2>
+      </div>
+
+      <div class="grid-3" id="demo-grid"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section">
+      <div class="text-center fade-in" style="margin-bottom:64px">
+        <p class="label label-indigo">Trust & Compliance</p>
+        <h2 class="heading-lg">Built for regulated institutions</h2>
+      </div>
+
+      <div class="grid-3" id="trust-grid"></div>
+    </div>
+  </section>
+
+  <section class="cta-section" id="demo">
+    <div style="max-width:700px;margin:0 auto;text-align:center;position:relative;z-index:1">
+      <div class="fade-in">
+        <h2 style="font-size:44px;font-weight:800;letter-spacing:-1.5px;color:#fff;margin-bottom:20px">
+          Transform your onboarding process
+        </h2>
+
+        <p style="font-size:18px;color:rgba(255,255,255,.5);line-height:1.7;margin-bottom:40px">
+          Join the regulated institutions replacing manual compliance with intelligent automation.
+          See Onboarda in action.
+        </p>
+
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+          <a class="btn-primary btn-lg" href="#" id="toggle-validation-btn">
+            Open Validation Demo
+            <svg class="arrow-icon" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+            </svg>
+          </a>
+
+          <a class="btn-secondary btn-secondary-dark btn-lg" href="mailto:hello@onboarda.com">
+            Book a Call
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div style="max-width:1200px;margin:0 auto">
+      <div class="grid-4" style="margin-bottom:48px">
+        <div>
+          <div class="logo" style="margin-bottom:16px">
+            <div class="logo-mark" style="width:30px;height:30px;border-radius:8px;font-size:14px">O</div>
+            <span style="font-size:16px;font-weight:700;color:#fff">Onboarda</span>
+          </div>
+          <p style="font-size:13px;color:rgba(255,255,255,.35);line-height:1.7;max-width:250px">
+            AI-powered compliance onboarding and monitoring for regulated institutions.
+          </p>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Product</div>
+          <a class="footer-link" href="#features">Features</a>
+          <a class="footer-link" href="#workflow">Workflow</a>
+          <a class="footer-link" href="#platform">Platform</a>
+          <a class="footer-link" href="#">Security</a>
+          <a class="footer-link" href="#">Pricing</a>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Use Cases</div>
+          <a class="footer-link" href="#">Payment Providers</a>
+          <a class="footer-link" href="#">Management Companies</a>
+          <a class="footer-link" href="#">Corporate Services</a>
+          <a class="footer-link" href="#">Fund Administrators</a>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Company</div>
+          <a class="footer-link" href="#">About</a>
+          <a class="footer-link" href="mailto:hello@onboarda.com">Contact</a>
+          <a class="footer-link" href="#">Blog</a>
+          <a class="footer-link" href="#">Careers</a>
+          <a class="footer-link" href="#">Legal</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span class="footer-legal">&copy; 2026 Onboarda. All rights reserved.</span>
+        <div style="display:flex;gap:24px" class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
