@@ -2851,3 +2851,151 @@ a {
     grid-template-columns: 1fr;
   }
 }
+
+/* ═══ CLIENT PORTAL ═══ */
+.client-portal-wrap {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 34px 24px 48px;
+}
+
+.client-hero {
+  margin-bottom: 24px;
+}
+
+.client-hero-title {
+  font-size: 42px;
+  font-weight: 800;
+  letter-spacing: -1.4px;
+  line-height: 1.08;
+  color: #fff;
+  margin: 0 0 14px;
+}
+
+.client-hero-sub {
+  max-width: 760px;
+  font-size: 16px;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0 0 22px;
+}
+
+.client-progress-card {
+  padding: 20px;
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.028));
+  border: 1px solid rgba(255,255,255,.06);
+  box-shadow: 0 20px 48px rgba(0,0,0,.18);
+}
+
+.client-progress-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.client-progress-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .8px;
+  color: rgba(255,255,255,.36);
+  margin-bottom: 4px;
+}
+
+.client-progress-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.client-progress-bar {
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.06);
+  overflow: hidden;
+}
+
+.client-progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #4f46e5, #8b5cf6);
+  transition: width .25s ease;
+}
+
+.client-progress-steps {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 10px;
+  font-size: 12px;
+  color: rgba(255,255,255,.4);
+}
+
+.client-portal-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.client-required-list {
+  display: grid;
+  gap: 12px;
+  padding: 18px;
+}
+
+.client-required-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 16px;
+  border-radius: 16px;
+  background: rgba(255,255,255,.035);
+  border: 1px solid rgba(255,255,255,.05);
+}
+
+.client-required-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.client-required-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,.44);
+  line-height: 1.6;
+}
+
+.client-submit-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 980px) {
+  .client-portal-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .client-hero-title {
+    font-size: 32px;
+  }
+
+  .client-submit-actions {
+    flex-direction: column;
+  }
+
+  .client-submit-actions .btn-primary,
+  .client-submit-actions .btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+}
