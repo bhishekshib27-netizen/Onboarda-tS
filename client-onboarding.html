@@ -113,46 +113,46 @@
           </form>
 
           <section class="card upload-card">
-            <div class="section-head">
-              <h3>Upload Documents</h3>
-              <p>Upload the required documents for secure AI-assisted review.</p>
-            </div>
+  <div class="section-head">
+    <h3>Upload Documents</h3>
+    <p>Upload the required documents for secure AI-assisted review.</p>
+  </div>
 
-            <div id="uploadArea" class="upload-area">
-              <input type="file" id="documentUpload" multiple hidden />
-              <div class="upload-icon">↑</div>
-              <h4>Drag and drop files here</h4>
-              <p>or</p>
-              <button type="button" id="browseBtn" class="secondary-btn">Browse Files</button>
-              <small>Supported: PDF, JPG, JPEG, PNG, DOC, DOCX</small>
-            </div>
+  <div id="uploadArea" class="upload-area">
+    <input type="file" id="documentUpload" multiple accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" />
+    <div class="upload-icon">↑</div>
+    <h4>Drag and drop files here</h4>
+    <p>or</p>
+    <button type="button" id="browseBtn" class="secondary-btn">Browse Files</button>
+    <small>Supported: PDF, JPG, JPEG, PNG, DOC, DOCX</small>
+  </div>
 
-            <div class="requirements-box">
-              <h4>Suggested documents</h4>
-              <ul>
-                <li>Proof of identity</li>
-                <li>Proof of address</li>
-                <li>Certificate of incorporation (if applicable)</li>
-                <li>Source of funds / supporting documents</li>
-              </ul>
-            </div>
+  <div class="requirements-box">
+    <h4>Suggested documents</h4>
+    <ul>
+      <li>Proof of identity</li>
+      <li>Proof of address</li>
+      <li>Certificate of incorporation (if applicable)</li>
+      <li>Source of funds / supporting documents</li>
+    </ul>
+  </div>
 
-            <div class="file-list-wrap">
-              <div class="file-list-head">
-                <h4>Uploaded Files</h4>
-                <span id="fileCount">0 files</span>
-              </div>
-              <div id="fileList" class="file-list empty">
-                No documents uploaded yet.
-              </div>
-            </div>
+  <div class="file-list-wrap">
+    <div class="file-list-head">
+      <h4>Uploaded Files</h4>
+      <span id="fileCount">0 files</span>
+    </div>
+    <div id="fileList" class="file-list empty">
+      No documents uploaded yet.
+    </div>
+  </div>
 
-            <div class="action-row">
-              <button type="button" id="reviewBtn" class="primary-btn">
-                Run AI Review
-              </button>
-            </div>
-          </section>
+  <div class="action-row">
+    <button type="button" id="reviewBtn" class="primary-btn">
+      Run AI Review
+    </button>
+  </div>
+</section>
         </div>
 
         <aside class="right-column">
